@@ -6,9 +6,8 @@ import os
 from time import sleep
 
 # Пример: можно начать с тикеров S&P 500
-SP500_TICKERS = [
-    "AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "TSLA", "META", "AVGO", "NFLX", "AMD"
-]
+SP500_TICKERS = pd.read_csv("data/sp500_tickers.csv")["ticker"].tolist()
+
 
 FIELDS_TO_EXTRACT = [
     "symbol", "longName", "sector", "trailingPE", "returnOnEquity",
