@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# MacOS / Linux / Windows system files
+.DS_Store
+Thumbs.db
+
+# VSCode settings (если не нужен в репе)
+.vscode/
+
+# Excel/CSV exports
+*.xlsx
+*.csv
+
+# Outputs
+data/raw/
+data/filtered/
+reports/
