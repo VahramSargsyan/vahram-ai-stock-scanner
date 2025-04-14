@@ -1,0 +1,10 @@
+revenue_growth: ">15"
+roe: ">12"
+debt_to_equity: "<1.5"
+free_cash_flow: ">0"
+dividend_yield: "=0"
+sector_whitelist:
+  - "Information Technology"
+  - "Semiconductors"
+  - "Software"
+pe_limit: 35
