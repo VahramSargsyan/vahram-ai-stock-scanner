@@ -1,24 +1,10 @@
-# scanner/downloader.py
-
 import pandas as pd
 import os
-import sys
+import glob
 from time import sleep
 import yfinance as yf
+from datetime import datetime
 
-
-# Пример: можно начать с тикеров S&P 500
-def load_tickers(file_path):
-    return pd.read_csv(file_path)["ticker"].tolist()
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("❌ Укажи путь к CSV-файлу со списком тикеров:")
-        print("Пример: python downloader.py data/sp500_batch_1.csv")
-        sys.exit(1)
-
-    tickers_file = sys.argv[1]
-    SP500_TICKERS = load_tickers(tickers_file)
 
 FIELDS_TO_EXTRACT = [
     "symbol", "longName", "sector", "trailingPE", "returnOnEquity",
@@ -34,28 +20,47 @@ def fetch_data(ticker):
         print(f"[ERROR] {ticker}: {e}")
         return None
 
-def save_results(results, filename="data/raw/market_snapshot_full.csv"):
+def save_results(results, date_str):
     df_new = pd.DataFrame(results)
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    os.makedirs("data/archive/", exist_ok=True)
+
+    filename = f"data/archive/market_snapshot_{date_str}.csv"
 
     if os.path.exists(filename) and os.path.getsize(filename) > 0:
-        df_existing = pd.read_csv(filename)
-        df_merged = pd.concat([df_existing, df_new]).drop_duplicates(subset="symbol")
+        try:
+            df_existing = pd.read_csv(filename)
+            df_merged = pd.concat([df_existing, df_new]).drop_duplicates(subset="symbol")
+        except pd.errors.EmptyDataError:
+            print("⚠️ Пустой файл, создаю с нуля.")
+            df_merged = df_new
     else:
         df_merged = df_new
 
     df_merged.to_csv(filename, index=False)
-    print(f"✅ Добавлено: {len(df_new)} компаний. Всего сохранено: {len(df_merged)}")
+    print(f"✅ Добавлено: {len(df_new)} компаний. Всего сохранено: {len(df_merged)} → 📄 {filename}")
 
-def run():
-    results = []
-    for i, ticker in enumerate(SP500_TICKERS):
-        print(f"🔄 [{i+1}/{len(SP500_TICKERS)}] Загружаем {ticker}...")
-        data = fetch_data(ticker)
-        if data:
-            results.append(data)
-        sleep(1)  # Чтобы не заблокировали
-    save_results(results)
+def load_tickers_from_csv(file_path):
+    return pd.read_csv(file_path)["ticker"].tolist()
+
+def run_all_batches():
+    date_str = datetime.now().strftime("%Y-%m-%d")
+
+    batch_files = sorted(glob.glob("data/sp500_batch_*.csv"))
+    if not batch_files:
+        print("❌ Не найдено файлов batch'ей в папке data/")
+        return
+
+    for i, file_path in enumerate(batch_files):
+        print(f"\n📦 Обработка батча {i+1}/{len(batch_files)}: {file_path}")
+        tickers = load_tickers_from_csv(file_path)
+        results = []
+        for j, ticker in enumerate(tickers):
+            print(f"🔄 [{j+1}/{len(tickers)}] Загружаем {ticker}...")
+            data = fetch_data(ticker)
+            if data:
+                results.append(data)
+            sleep(1)
+        save_results(results, date_str)
 
 if __name__ == "__main__":
-    run()
+    run_all_batches()
