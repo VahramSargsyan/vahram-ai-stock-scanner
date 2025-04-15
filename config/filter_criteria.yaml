@@ -3,8 +3,46 @@ roe: ">12"
 debt_to_equity: "<1.5"
 free_cash_flow: ">0"
 dividend_yield: "=0"
-sector_whitelist:
-  - "Information Technology"
-  - "Semiconductors"
-  - "Software"
+sector_whitelist: [] #  Если хотим фильтроавать из всех котегорий 
+# sector_whitelist:
+#   - "Information Technology"
+#   - "Semiconductors"
+#   - "Software"
 pe_limit: 35
+
+
+
+# revenue_growth: ">5"
+# roe: ">5"
+# debt_to_equity: "<3"
+# free_cash_flow: ">0"
+# dividend_yield: "<=1"  # допускаем минимальные дивиденды
+# sector_whitelist: [] # если хотим проверить все сектора
+# sector_whitelist:  # если хотим отобрать по секторам
+#   - "Information Technology"
+#   - "Semiconductors"
+#   - "Software"
+#   - "Healthcare"
+#   - "Consumer Cyclical"
+pe_limit: 60
+
+
+# revenue_growth: ">-100"       # Даже отрицательный рост OK
+# roe: ">-100"                  # Даже убыточные OK
+# debt_to_equity: "<999"        # Почти без ограничения по долгам
+# free_cash_flow: ">-99999999"  # Любое значение кроме None
+# dividend_yield: "<=999"       # Даже если дивиденды 100% – всё равно ок
+# sector_whitelist:
+#   - "Information Technology"
+#   - "Semiconductors"
+#   - "Software"
+#   - "Healthcare"
+#   - "Consumer Cyclical"
+#   - "Financial Services"
+#   - "Industrials"
+#   - "Communication Services"
+#   - "Energy"
+#   - "Utilities"
+#   - "Real Estate"
+#   - "Materials"
+# pe_limit: 999                 # Пропустит даже безумные P/E
