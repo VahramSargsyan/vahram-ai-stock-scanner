@@ -4,6 +4,7 @@ import pandas as pd
 import yaml
 import os
 
+
 # Загрузка конфигурации фильтра
 def load_filter_config(path="config/filter_criteria.yaml"):
     with open(path, "r", encoding="utf-8") as f:
