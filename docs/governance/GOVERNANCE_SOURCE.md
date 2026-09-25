@@ -1,21 +1,28 @@
 # Governance Source
 
-Local governance version: **VAHRAM_APP_GOVERNANCE v0.4.9**
+Universal governance version: **VAHRAM_APP_GOVERNANCE v1.0.0**
 
-Canonical investment overlay:
+Canonical universal source:
+`VahramSargsyan/vbos-app/docs/governance/VAHRAM_APP_UNIVERSAL_GOVERNANCE_v1.0.0.md`
+
+Canonical investment-specific overlay:
 `VahramSargsyan/investment-cases` -> `PROJECT_GOVERNANCE.md`
 
-Upstream origin:
-- Vahram APP v0.4.9 workflow/guardrail package
-- VBOS `PROJECT_GOVERNANCE.md`
-- VBOS `AGENTS.md`
-- VBOS Golden Architecture and data-access rules
+Local profile: **STOCK_STRATEGY_SCANNER**
 
-This repository keeps a local self-contained governance adapter so it can be developed safely without requiring a cross-repository runtime dependency.
+Historical origin includes the v0.4.9 APP workflow/Golden Architecture package plus later VBOS/HMT governance improvements consolidated into v1.0.0.
 
-When governance changes materially:
-1. update canonical Investment Lab governance;
-2. bump governance version;
-3. sync affected repositories;
-4. record project-specific deviations;
-5. never allow silent rule drift.
+This repository keeps a small local governance adapter so it remains safe and understandable when opened independently.
+
+Local rules may be stricter than v1.0.0 but must not silently weaken it.
+
+## Sync rule
+
+When universal governance changes materially:
+1. update the canonical universal governance;
+2. bump the governance version;
+3. update the central GOVERNANCE_REGISTRY;
+4. sync affected active repositories;
+5. record project-specific deviations.
+
+Silent divergence is not allowed.
