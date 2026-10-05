@@ -26,6 +26,7 @@ Every AI maintainer chat that creates or updates a development PR must act as an
 
 At task start create one stable `SESSION_ID` for the current chat/task and reuse it across every PR/repository touched by that chat/task. For each Asia/Yerevan local date, keep cumulative counts of the user's actual interventions in this chat:
 
+- `NUDGE = 1`
 - `NEXT = 1`
 - `QUICK_ACCEPT = 1`
 - `CLARIFY = 2`
@@ -33,15 +34,15 @@ At task start create one stable `SESSION_ID` for the current chat/task and reuse
 - `TEST_DEEP_OR_BUG_EVIDENCE = 4`
 - `LOGIC_OR_DESIGN_CHANGE = 5`
 
-Classification is contextual. A one-word "готово"/"ок" after a requested runtime test inherits TEST/TEST_DEEP. Reading/re-reading without advancing, validating, or changing development is not an intervention.
+Classification is contextual, not based on message length. Use `NUDGE` for a minimal wake-up/keepalive prompt such as `?`, `!`, `.`, `ты тут?`, or `ну и?` only when its sole purpose is to resume an apparently stalled/overlong flow and it adds no new technical content. Count that turn once as NUDGE, not also NEXT/QUICK_ACCEPT. A one-word "готово"/"ок" after a requested runtime test inherits TEST/TEST_DEEP. Reading/re-reading without advancing, validating, changing, or waking stalled development is not an intervention.
 
 When creating a PR, include:
 
-`<!-- HI_V1 {"date":"YYYY-MM-DD","SESSION_ID":"<stable-chat-task-id>","REVISION":1,"NEXT":0,"QUICK_ACCEPT":0,"CLARIFY":0,"TEST":0,"TEST_DEEP_OR_BUG_EVIDENCE":0,"LOGIC_OR_DESIGN_CHANGE":0,"ACCEPTED_CAPABILITIES":0} -->`
+`<!-- HI_V1 {"date":"YYYY-MM-DD","SESSION_ID":"<stable-chat-task-id>","REVISION":1,"NUDGE":0,"NEXT":0,"QUICK_ACCEPT":0,"CLARIFY":0,"TEST":0,"TEST_DEEP_OR_BUG_EVIDENCE":0,"LOGIC_OR_DESIGN_CHANGE":0,"ACCEPTED_CAPABILITIES":0} -->`
 
 If later user interactions change the counts, increment `REVISION` and update the PR body before merge/final completion. Reuse the same SESSION_ID across all PRs from the same chat/task; Analytics Hub deduplicates by SESSION_ID/date and highest REVISION.
 
-If required earlier chat context is unavailable, never invent zero. Include:
+If required earlier chat context is unavailable, never invent zero or substitute `NUDGE = 1` for unknown context. Include:
 
 `<!-- HI_V1_CONTEXT_GAP {"date":"YYYY-MM-DD","SESSION_ID":"<stable-chat-task-id>","reason":"CHAT_CONTEXT_UNAVAILABLE"} -->`
 
