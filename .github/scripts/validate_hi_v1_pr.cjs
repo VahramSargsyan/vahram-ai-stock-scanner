@@ -2,6 +2,7 @@
 const fs = require('fs');
 
 const EVENT_IDS = [
+  'NUDGE',
   'NEXT',
   'QUICK_ACCEPT',
   'CLARIFY',
@@ -104,7 +105,7 @@ function selfTest() {
   const valid = {
     pull_request: {
       created_at: createdAt,
-      body: '<!-- HI_V1 {"date":"' + date + '","SESSION_ID":"S1","REVISION":2,"NEXT":1,"QUICK_ACCEPT":0,"CLARIFY":1,"TEST":0,"TEST_DEEP_OR_BUG_EVIDENCE":0,"LOGIC_OR_DESIGN_CHANGE":0,"ACCEPTED_CAPABILITIES":0} -->'
+      body: '<!-- HI_V1 {"date":"' + date + '","SESSION_ID":"S1","REVISION":2,"NUDGE":1,"NEXT":1,"QUICK_ACCEPT":0,"CLARIFY":1,"TEST":0,"TEST_DEEP_OR_BUG_EVIDENCE":0,"LOGIC_OR_DESIGN_CHANGE":0,"ACCEPTED_CAPABILITIES":0} -->'
     }
   };
   const gap = {
@@ -117,7 +118,7 @@ function selfTest() {
   const wrongDate = {
     pull_request: {
       created_at: createdAt,
-      body: '<!-- HI_V1 {"date":"2026-10-01","SESSION_ID":"S3","REVISION":1,"NEXT":1,"QUICK_ACCEPT":0,"CLARIFY":0,"TEST":0,"TEST_DEEP_OR_BUG_EVIDENCE":0,"LOGIC_OR_DESIGN_CHANGE":0,"ACCEPTED_CAPABILITIES":0} -->'
+      body: '<!-- HI_V1 {"date":"2026-10-01","SESSION_ID":"S3","REVISION":1,"NUDGE":0,"NEXT":1,"QUICK_ACCEPT":0,"CLARIFY":0,"TEST":0,"TEST_DEEP_OR_BUG_EVIDENCE":0,"LOGIC_OR_DESIGN_CHANGE":0,"ACCEPTED_CAPABILITIES":0} -->'
     }
   };
   if (validatePayload(valid).status !== 'PASS') throw new Error('valid HI_V1 fixture must PASS');
