@@ -1,10 +1,10 @@
 # Vahram AI Stock Scanner Project Governance
 
-GOVERNANCE_VERSION: **VAHRAM_APP_GOVERNANCE v1.0.0**  
-CANONICAL_SOURCE: `VahramSargsyan/vbos-app/docs/governance/VAHRAM_APP_UNIVERSAL_GOVERNANCE_v1.0.0.md`  
-LAST_SYNC: **2026-09-25**
+GOVERNANCE_VERSION: **VAHRAM_APP_GOVERNANCE v1.1.0**  
+CANONICAL_SOURCE: `VahramSargsyan/vbos-app/docs/governance/VAHRAM_APP_UNIVERSAL_GOVERNANCE_v1.1.0.md`  
+LAST_SYNC: **2026-10-05**
 
-**Universal authority override:** v1.0.0 is the current cross-project baseline. Any v0.4.9 language below is retained only as historical/local provenance. Local rules may be stricter but must not silently weaken v1.0.0.
+**Universal authority override:** v1.1.0 is the current cross-project baseline. Any v0.4.9 language below is retained only as historical/local provenance. Local rules may be stricter but must not silently weaken v1.1.0.
 
 Local profile: **STOCK_STRATEGY_SCANNER**  
 Status: ACTIVE
@@ -17,6 +17,7 @@ Every task selects one mode before changes:
 - STRESS_TEST_ONLY
 - DIAGNOSTIC_ONLY
 - PATCH_FIX
+- IMPLEMENT_FEATURE
 - BUILD_NEW_APP
 - ECOSYSTEM_PLANNING
 - PRODUCTION_OBSERVATION
@@ -134,3 +135,13 @@ Report:
 - migration requirement;
 - post-install/promotion checks;
 - residual risks.
+
+## Bounded work adoption — v1.1.0
+
+LOCAL_DELIVERY_PROFILE: RESEARCH_LOCAL
+CANONICAL_ADOPTION_DEPENDENCY: VahramSargsyan/vbos-app/docs/governance/VAHRAM_APP_UNIVERSAL_GOVERNANCE_v1.1.0.md
+Read `CHAT_WORK_CONTRACT.md` for bounded execution, ordinary in-scope repairs, technical verification before user acceptance, stop/resume and budget rules. Adoption is effective only after the canonical v1.1.0 exists on main and this adapter is merged. Until then use the previous adopted baseline and treat this candidate as a proposal. Repository-specific privacy, source-recovery, research and PROD safeguards remain in force.
+
+`DIAGNOSTIC_ONLY` means read-only investigation. Explicit diagnostic instrumentation uses `PATCH_FIX` with subtype `DIAGNOSTIC_PATCH`; `IMPLEMENT_FEATURE` covers one approved capability in an existing product. NEW_APP_DISCOVERY is an ECOSYSTEM_PLANNING phase. A documentation task does not start product implementation or a pilot automatically.
+
+Check `GOVERNANCE_ADOPTION.md`; document presence is not enforcement verification. Resolve live environments through the local registry. Do not treat historical project attachments or old next-step notes as current permissions.

@@ -1,8 +1,8 @@
 # Instructions for AI maintainers
 
-GOVERNANCE_VERSION: **VAHRAM_APP_GOVERNANCE v1.0.0**  
-CANONICAL_SOURCE: `VahramSargsyan/vbos-app/docs/governance/VAHRAM_APP_UNIVERSAL_GOVERNANCE_v1.0.0.md`  
-LAST_SYNC: **2026-09-25**
+GOVERNANCE_VERSION: **VAHRAM_APP_GOVERNANCE v1.1.0**  
+CANONICAL_SOURCE: `VahramSargsyan/vbos-app/docs/governance/VAHRAM_APP_UNIVERSAL_GOVERNANCE_v1.1.0.md`  
+LAST_SYNC: **2026-10-05**
 
 Read the universal governance when accessible, then apply this repository's local rules. If the private canonical source is unavailable, the local P0 rules below remain fail-safe authority.
 
@@ -46,3 +46,14 @@ If required earlier chat context is unavailable, never invent zero. Include:
 `<!-- HI_V1_CONTEXT_GAP {"date":"YYYY-MM-DD","SESSION_ID":"<stable-chat-task-id>","reason":"CHAT_CONTEXT_UNAVAILABLE"} -->`
 
 Never silently omit telemetry. A PR with a failing HI_V1 telemetry gate must not be merged; fix the marker or declare an explicit HI_V1_CONTEXT_GAP first. Do not create a separate analytics PR, commit, or GitHub Action just to send HI_V1 data.
+
+
+## Bounded work adoption — v1.1.0
+
+LOCAL_DELIVERY_PROFILE: RESEARCH_LOCAL
+CANONICAL_ADOPTION_DEPENDENCY: VahramSargsyan/vbos-app/docs/governance/VAHRAM_APP_UNIVERSAL_GOVERNANCE_v1.1.0.md
+Read `CHAT_WORK_CONTRACT.md` for bounded execution, ordinary in-scope repairs, technical verification before user acceptance, stop/resume and budget rules. Adoption is effective only after the canonical v1.1.0 exists on main and this adapter is merged. Until then use the previous adopted baseline and treat this candidate as a proposal. Repository-specific privacy, source-recovery, research and PROD safeguards remain in force.
+
+`DIAGNOSTIC_ONLY` means read-only investigation. Explicit diagnostic instrumentation uses `PATCH_FIX` with subtype `DIAGNOSTIC_PATCH`; `IMPLEMENT_FEATURE` covers one approved capability in an existing product. NEW_APP_DISCOVERY is an ECOSYSTEM_PLANNING phase. A documentation task does not start product implementation or a pilot automatically.
+
+Check `GOVERNANCE_ADOPTION.md`; document presence is not enforcement verification. Resolve live environments through the local registry. Do not treat historical project attachments or old next-step notes as current permissions.
